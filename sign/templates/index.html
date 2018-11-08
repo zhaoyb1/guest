@@ -1,0 +1,192 @@
+﻿<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS左侧下拉二级菜单代码 - 源码之家</title>
+
+    <script src="{% static '/js/menu.js' %}"></script>
+    <script src="{% static '/js/iframe.js' %}"></script>
+    <!--rem适配js-->
+    <script src="{% static '/js/adapter.js' %}"></script>
+    <link rel="stylesheet" href="{% static '/css/base.css' %}">
+    <link rel="stylesheet" href="{% static '/css/menu.css' %}">
+
+    <script type="text/javascript">
+        var selectedLi;
+
+        function change(page) {
+            if (selectedLi == null) {
+                selectedLi = page;
+                selectedLi.className = null;
+            } else {
+                selectedLi.className = null;
+                selectedLi = page;
+            }
+            page.className = "h3";
+            // 在同一目录下 创建1.html 2.html 3.html 取消注释下面的iframe 可使用此方法进行切换
+            document.getElementById('content').src = page.rel;
+            //document.getElementById('container').innerHTML = "#######" + page.rel;
+
+        }
+
+    </script>
+</head>
+<body>
+
+
+<div id="menu">
+    <!--隐藏菜单-->
+    <div id="ensconce">
+        <h2>
+            <img src="{% static '/images/show.png' %}" alt="">
+            国内各地景点
+        </h2>
+    </div>
+
+    <!--显示菜单-->
+    <div id="open">
+        <div class="navH">
+            国内各地景点
+            <span><img class="obscure" src="{% static '/images/obscure.png' %}" alt=""></span>
+        </div>
+        <div class="navBox">
+            <ul>
+                <li>
+                    <h2 class="obtain">北京景点<i></i></h2>
+
+                    <div class="secondary">
+
+
+                        <h3><a onclick="change(this)" href="javascript:;" rel="test">W3School</a></h3>
+
+                        <h3><a onclick="change(this)" href="javascript:;" rel="test">十三陵</a></h3>
+
+                        <h3><a onclick="change(this)" href="javascript:;" rel="baidu">圆明园</a></h3>
+
+                        <h3><a onclick="change(this)" href="javascript:;" rel="login">长城</a></h3>
+
+                        <h3><a onclick="change(this)" href="javascript:;" rel="test">雍和宫</a></h3>
+
+                        <h3><a onclick="change(this)" href="javascript:;" rel="test">天坛公园</a></h3>
+                    </div>
+
+                </li>
+                <li>
+                    <h2 class="obtain">南京景点<i></i></h2>
+
+                    <div class="secondary">
+                        <h3><a href="{% url 'test' %}" rel="index">栖霞寺</a></h3>
+
+                        <h3>夫子庙</h3>
+
+                        <h3>海底世界</h3>
+
+                        <h3>中山陵</h3>
+
+                        <h3>乌衣巷</h3>
+
+                        <h3>音乐台</h3>
+                    </div>
+                </li>
+                <li>
+                    <h2 class="obtain">上海景点<i></i></h2>
+
+                    <div class="secondary">
+                        <h3>东方明珠</h3>
+
+                        <h3>外滩</h3>
+
+                        <h3>豫园</h3>
+
+                        <h3>文庙</h3>
+
+                        <h3>世博园</h3>
+
+                        <h3 class="bu">田子坊</h3>
+                    </div>
+                </li>
+                <li>
+                    <h2 class="obtain">深圳景点<i></i></h2>
+
+                    <div class="secondary">
+                        <h3>华侨城</h3>
+
+                        <h3>观澜湖</h3>
+
+                        <h3>世界之窗</h3>
+
+                        <h3>东门老街</h3>
+
+                        <h3>七娘山</h3>
+
+                        <h3>光明农场</h3>
+                    </div>
+                </li>
+                <li>
+                    <h2 class="obtain">广州景点<i></i></h2>
+
+                    <div class="secondary">
+                        <h3>白云山</h3>
+
+                        <h3>长隆</h3>
+
+                        <h3>黄花岗公园</h3>
+
+                        <h3>中山纪念堂</h3>
+
+                        <h3>华南植物园</h3>
+
+                        <h3>南沙湿地公园</h3>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<script src="{% static '/js/menu.js' %}"></script>
+<!--控制js-->
+
+
+<div id="container" class="container">
+
+    <div id="welcome" class="content" style="display:block;">
+        <div align="center">
+            <p></p>
+
+            <p><strong>欢迎使用用户管理系统</strong></p>
+            <ul class="cl">
+
+                <!--align="right" align="right"-->
+                <p><strong>{{ user }}</strong></p>
+                <li><a href="{% url 'logout' %}">
+                    <button class="buttons">退 出</button>
+                </a></li>
+
+            </ul>
+        </div>
+    </div>
+
+        <iframe id="content" class="iframe" src="#" scrolling="no" onload="changeFrameHeight()"
+                width="80%" ></iframe>
+
+</div>
+<script type="text/javascript">
+    function changeFrameHeight() {
+        var ifm = document.getElementById("content");
+        ifm.height = document.documentElement.clientHeight - 56;
+    }
+    window.onresize = function () {
+        changeFrameHeight();
+    }
+    $(function () {
+        changeFrameHeight();
+    });
+</script>
+</body>
+</html>
